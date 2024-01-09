@@ -1,9 +1,9 @@
-import driver from "../models/driverSchema.js";
+import driverModel from "../models/driverSchema.js";
 
 
 export const addDriver = async (request, response) => {
 
-    const newDriver = new driver(request.body)
+    const newDriver = new driverModel(request.body)
     try {
         await newDriver.save()
         response.status(201).json(newDriver)
@@ -17,7 +17,7 @@ export const addDriver = async (request, response) => {
 export const getDrivers = async (request, response) => {
 
     try {
-        const driverList = await driver.find({})
+        const driverList = await driverModel.find({})
         response.status(200).json(driverList)
     }
     catch (error) {
@@ -30,7 +30,7 @@ export const getDrivers = async (request, response) => {
 
 export const deleteDriver = async (req, res) => {
     try {
-        const result = await driver.deleteOne({ _id: req.params.id });
+        const result = await driverModel.deleteOne({ _id: req.params.id });
 
         if (result.deletedCount === 0) {
             return res.status(404).json({ error: 'Driver was not found' });
@@ -45,7 +45,7 @@ export const deleteDriver = async (req, res) => {
 
 export const updateDriver = async (req, res) => {
     try {
-        const updateDriver = await driver.updateOne(
+        const updateDriver = await driverModel.updateOne(
             { _id: req.params.id },
             {
                 $set: {

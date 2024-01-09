@@ -1,9 +1,17 @@
 import express from 'express';
 import dotenv from "dotenv";
-import driverRouter from './routes/driverRoutes.js';
+
+
 import cors from "cors";
+
 import bodyParser from "body-parser";
+import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
+
+import driverRouter from './routes/driverRoutes.js';
+import adminRouter from './routes/authRoutes.js';
+
+
 
 dotenv.config()
 const app = express();
@@ -20,8 +28,19 @@ mongoose.connect(process.env.MONGO_URL)
 //Middleware
 app.use(bodyParser.json({ extended: true }))
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cors())
-//app.use('/', )
+
+
+
+// Enable CORS for all routes
+app.use(cors({
+    origin: 'http://localhost:3000',
+    credentials: true
+}));
+
+
+//AdminRoutes
+
+app.use('/', adminRouter)
 
 //Driver Routes
 app.use('/driver', driverRouter)
