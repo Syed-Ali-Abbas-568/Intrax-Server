@@ -1,4 +1,5 @@
 import express from "express";
+import requireLogin from "../middlewares/requireLogin.js";
 import { getDrivers, addDriver, deleteDriver, updateDriver } from "../controllers/driverController.js";
 
 // Middleware for project routes
@@ -6,10 +7,10 @@ import { getDrivers, addDriver, deleteDriver, updateDriver } from "../controller
 const driverRouter = express.Router()
 
 
-driverRouter.post('/add', addDriver)
-driverRouter.get('/view', getDrivers)
-driverRouter.delete('/delete/:id', deleteDriver)
-driverRouter.put('/update/:id', updateDriver)
+driverRouter.post('/add',requireLogin, addDriver)
+driverRouter.get('/view',requireLogin, getDrivers)
+driverRouter.delete('/delete/:id',requireLogin, deleteDriver)
+driverRouter.put('/update/:id',requireLogin, updateDriver)
 
 
 

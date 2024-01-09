@@ -1,7 +1,7 @@
 // import admin from "../models/adminSchemas"
 import { hashPassword, comparePassword } from '../helpers/auth.js';
 import adminModel from '../models/adminSchema.js';
-// import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 
 
@@ -78,12 +78,11 @@ export const loginAdmin = async (req, res) => {
         const match = await comparePassword(password, user.password)
         //if the user exist we will now assign them a jwt token which is cookie basically and we can now track the user along his pages
         if (match) {
-            // jwt.sign({ email: user.email, id: user._id, name: user.name, userType: user.userType }, process.env.JWT_SECRET, {}, (err, token) => {
-            //     if (err) throw err;
-            //     res.cookie('token', token).json(user)
-            // })
+            const token=jwt.sign({_id:user._id},process.env.JWT_SECRET)
+            const {_id,name,email}=user
+            res.json({token,user:{_id,name,email}})
+            
 
-            res.json('passwords match')
         }
         else {
             res.json(
