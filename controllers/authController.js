@@ -68,7 +68,7 @@ export const loginAdmin = async (req, res) => {
         const user = await adminModel.findOne({ email });
         if (!user) {
             return res.json(
-                { error: "Sorry, no user with the provided email address was found. Please double-check the email you entered or consider signing up if you're a new user" }
+                { error: "Sorry, no user with the provided credentials was found. Please double-check your credentials" }
 
             )
 
@@ -78,10 +78,10 @@ export const loginAdmin = async (req, res) => {
         const match = await comparePassword(password, user.password)
         //if the user exist we will now assign them a jwt token which is cookie basically and we can now track the user along his pages
         if (match) {
-            const token=jwt.sign({_id:user._id},process.env.JWT_SECRET)
-            const {_id,name,email}=user
-            res.json({token,user:{_id,name,email}})
-            
+            const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET)
+            const { _id, name, email } = user
+            res.json({ token, user: { _id, name, email } })
+
 
         }
         else {

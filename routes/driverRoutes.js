@@ -7,10 +7,10 @@ import { getDrivers, addDriver, deleteDriver, updateDriver } from "../controller
 const driverRouter = express.Router()
 
 
-driverRouter.post('/add',requireLogin, addDriver)
-driverRouter.get('/view',requireLogin, getDrivers)
-driverRouter.delete('/delete/:id',requireLogin, deleteDriver)
-driverRouter.put('/update/:id',requireLogin, updateDriver)
+driverRouter.post('/add', addDriver)
+driverRouter.get('/view', getDrivers)
+driverRouter.delete('/delete/:id', deleteDriver)
+driverRouter.put('/update/:id', updateDriver)
 
 
 
