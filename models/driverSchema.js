@@ -6,7 +6,8 @@ const driverSchema = mongoose.Schema({
     phone: { type: String, unique: true },
     cnic: { type: String, unique: true },
     gender: String,
-    status: String
+    status: String,
+    password: String
 
 
 })

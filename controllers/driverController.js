@@ -1,11 +1,27 @@
 import driverModel from "../models/driverSchema.js";
 
+import { generateRandomPassword } from "../helpers/auth.js";
+import { sendPasswordKeyDriverEmail } from "../helpers/mailing.js";
+import { hashPassword } from "../helpers/auth.js";
+
 
 export const addDriver = async (request, response) => {
 
-    const newDriver = new driverModel(request.body)
+    const randompassword = generateRandomPassword(9)
+    const encryptedpassword = await hashPassword(randompassword)
+    const modelWithPassword = {
+        ...request.body,
+        password: encryptedpassword,
+
+    }
+
+    const newDriver = new driverModel(modelWithPassword)
+
     try {
+
+
         await newDriver.save()
+        sendPasswordKeyDriverEmail(request.body.name, request.body.email, randompassword);
         response.status(201).json(newDriver)
     }
     catch (error) {
