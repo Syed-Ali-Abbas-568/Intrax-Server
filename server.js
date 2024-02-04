@@ -10,6 +10,7 @@ import mongoose from 'mongoose';
 
 import driverRouter from './routes/driverRoutes.js';
 import adminRouter from './routes/authRoutes.js';
+import userRouter from './routes/userRoutes.js';
 
 
 
@@ -44,6 +45,9 @@ app.use('/', adminRouter)
 
 //Driver Routes
 app.use('/driver', driverRouter)
+
+//User Routes
+app.use('/user',userRouter)
 
 app.listen(PORT, () => console.log(`Express Server created successfully on port ${PORT}`))
 
