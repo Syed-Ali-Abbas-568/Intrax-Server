@@ -12,8 +12,6 @@ import driverRouter from './routes/driverRoutes.js';
 import adminRouter from './routes/authRoutes.js';
 import userRouter from './routes/userRoutes.js';
 
-
-
 dotenv.config()
 const app = express();
 const PORT = process.env.PORT || 8001;
@@ -27,17 +25,17 @@ mongoose.connect(process.env.MONGO_URL)
 
 
 //Middleware
+
+
+
 app.use(bodyParser.json({ extended: true }))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
 
 // Enable CORS for all routes
-app.use(cors({
-    origin: 'http://localhost:3000',
-    credentials: true
-}));
 
+app.use(cors());
 
 //AdminRoutes
 
