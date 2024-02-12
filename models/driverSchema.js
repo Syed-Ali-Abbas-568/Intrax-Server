@@ -6,10 +6,11 @@ const driverSchema = mongoose.Schema({
     phone: { type: String, unique: true },
     cnic: { type: String, unique: true },
     gender: String,
-    status: String
+    status: String,
+    password: String
 
 
 })
 
-const driver = mongoose.model('driver', driverSchema)
-export default driver
+const driverModel = mongoose.model('driver', driverSchema)
+export default driverModel

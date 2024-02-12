@@ -1,4 +1,5 @@
 import express from "express";
+import requireLogin from "../middlewares/requireLogin.js";
 import { getDrivers, addDriver, deleteDriver, updateDriver } from "../controllers/driverController.js";
 
 // Middleware for project routes

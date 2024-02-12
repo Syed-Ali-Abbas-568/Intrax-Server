@@ -1,9 +1,16 @@
 import express from 'express';
 import dotenv from "dotenv";
-import driverRouter from './routes/driverRoutes.js';
+
+
 import cors from "cors";
+
 import bodyParser from "body-parser";
+import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
+
+import driverRouter from './routes/driverRoutes.js';
+import adminRouter from './routes/authRoutes.js';
+import userRouter from './routes/userRoutes.js';
 
 dotenv.config()
 const app = express();
@@ -18,13 +25,27 @@ mongoose.connect(process.env.MONGO_URL)
 
 
 //Middleware
+
+
+
 app.use(bodyParser.json({ extended: true }))
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(cors())
-//app.use('/', )
+
+
+
+// Enable CORS for all routes
+
+app.use(cors());
+
+//AdminRoutes
+
+app.use('/', adminRouter)
 
 //Driver Routes
 app.use('/driver', driverRouter)
+
+//User Routes
+app.use('/user',userRouter)
 
 app.listen(PORT, () => console.log(`Express Server created successfully on port ${PORT}`))
 

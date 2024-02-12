@@ -1,29 +1,23 @@
-const express = require('express')
-const router = express.Router()
-const cors = require('cors')
+import express from 'express';
+import cors from 'cors';
+import { test, registerAdmin, loginAdmin } from '../controllers/authController.js';
 
-const { test, registerUser, loginUser, getProfile, logOutUser, getUserInfo } = require('../controllers/authController')
+const adminRouter = express.Router();
 
-//Middelware creation using cors
-router.use(
-    cors(
-        {
-            credentials: true,
-            origin: 'http://localhost:5173'
+// Middleware creation using cors
+// Here the origin is the frontend from which the request is coming from
 
-        }
 
-    )
-)
+// You can use req, res over here, but to create clean code, we will use a function that does that for us
 
-// you can use req, res over here but to create clean code we will use a function that does that for us
+adminRouter.get('/', test);
 
-router.get('/', test)
+adminRouter.post('/register', registerAdmin);
+adminRouter.post('/login', loginAdmin);
 
-router.post('/register', registerUser)
-router.post('/login', loginUser)
-router.post('/logout', logOutUser)
-router.get('/profile', getProfile)
-router.get('/:id', getUserInfo)
+// adminRouter.post('/logout', logOutUser);
+// adminRouter.get('/profile', getProfile);
+// adminRouter.get('/:id', getUserInfo);
+
 // Always export when creating routes 
-module.exports = router
+export default adminRouter;
