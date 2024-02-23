@@ -35,7 +35,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // Enable CORS for all routes
 
-app.use(cors());
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000',
+}));
 
 //AdminRoutes
 
