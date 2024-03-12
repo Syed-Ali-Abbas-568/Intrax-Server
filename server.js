@@ -11,6 +11,7 @@ import mongoose from 'mongoose';
 import driverRouter from './routes/driverRoutes.js';
 import adminRouter from './routes/authRoutes.js';
 import userRouter from './routes/userRoutes.js';
+import busRouter from './routes/busRoutes.js';
 
 dotenv.config()
 const app = express();
@@ -49,6 +50,8 @@ app.use('/driver', driverRouter)
 
 //User Routes
 app.use('/user',userRouter)
+
+app.use('/bus',busRouter)
 
 app.listen(PORT, () => console.log(`Express Server created successfully on port ${PORT}`))
 
