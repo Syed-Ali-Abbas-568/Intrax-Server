@@ -35,7 +35,10 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // Enable CORS for all routes
 
-app.use(cors());
+app.use(cors({
+    credentials: true,
+    origin: 'http://localhost:3000',
+}));
 
 //AdminRoutes
 
@@ -45,7 +48,7 @@ app.use('/', adminRouter)
 app.use('/driver', driverRouter)
 
 //User Routes
-app.use('/user',userRouter)
+app.use('/user', userRouter)
 
 app.listen(PORT, () => console.log(`Express Server created successfully on port ${PORT}`))
 
