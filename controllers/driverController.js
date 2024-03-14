@@ -2,7 +2,7 @@ import driverModel from "../models/driverSchema.js";
 
 import { generateRandomPassword } from "../helpers/auth.js";
 import { sendPasswordKeyDriverEmail } from "../helpers/mailing.js";
-import { hashPassword } from "../helpers/auth.js";
+import { hashPassword, comparePassword } from "../helpers/auth.js";
 
 
 export const addDriver = async (request, response) => {
@@ -86,3 +86,44 @@ export const updateDriver = async (req, res) => {
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+export const loginCaptain = async (req, res) => {
+    try {
+        const { email, password } = req.query;
+        //Check if User Exist
+        const captain = await driverModel.findOne({ email });
+        if (!captain) {
+            return res.json(
+                { error: "No captain found." }
+
+            )
+
+        }
+
+        //check if password matches:
+        const match = await comparePassword(password, captain.password)
+        //if the user exist we will now assign them a jwt token which is cookie basically and we can now track the user along his pages
+        if (match) {
+            /*const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET)
+            const { _id, name, email } = user
+            res.json({ token, user: { _id, name, email } })*/
+
+            return res.json(
+                captain
+
+            )
+        }
+        else {
+            res.json(
+                { error: "Incorrect Password Entered" }
+            )
+        }
+
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: 'An error occurred while processing the request' });
+
+
+    }
+
+}
