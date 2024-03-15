@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const busSchema = mongoose.Schema({
   busNumber: {
-    type: String,
+    type: String, unique:true,
     required: true
   },
   busModel: {
@@ -22,7 +22,7 @@ const busSchema = mongoose.Schema({
     required: true
   },
   gpsDeviceId: {
-    type: String,
+    type: String, unique:true,
     required: true
   },
   typeOfBus: {
