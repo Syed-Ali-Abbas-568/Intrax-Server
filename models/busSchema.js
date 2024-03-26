@@ -14,7 +14,7 @@ const busSchema = mongoose.Schema({
     required: true
   },
   licensePlateNumber: {
-    type: String,
+    type: String, unique:true,
     required: true
   },
   manufacturerYear: {
