@@ -10,6 +10,7 @@ import mongoose from 'mongoose';
 import driverRouter from './routes/driverRoutes.js';
 import adminRouter from './routes/authRoutes.js';
 import userRouter from './routes/userRoutes.js';
+import busRouter from './routes/busRoutes.js';
 import stationRouter from './routes/stationRoutes.js';
 import routeRouter from './routes/routeRouter.js';
 
@@ -51,6 +52,7 @@ app.use('/driver', driverRouter)
 //User Routes
 app.use('/user', userRouter)
 
+app.use('/bus',busRouter)
 //Station Routes
 app.use('/station', stationRouter)
 
