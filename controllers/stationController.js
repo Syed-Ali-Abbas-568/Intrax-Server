@@ -4,13 +4,14 @@ import stationModel from "../models/stationSchema.js";
 export const addStation = async (req, res) => {
     try {
       // Extract data from the request body
-      const { name, latitude, longitude } = req.body;
+      const { name, latitude, longitude, description } = req.body;
   
       // Create a new station instance
       const newStation = new stationModel({
         name,
         latitude,
         longitude,
+        description,
       });
   
       // Save the station to the database
