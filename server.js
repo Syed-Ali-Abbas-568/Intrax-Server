@@ -5,13 +5,13 @@ import dotenv from "dotenv";
 import cors from "cors";
 
 import bodyParser from "body-parser";
-import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
 
 import driverRouter from './routes/driverRoutes.js';
 import adminRouter from './routes/authRoutes.js';
 import userRouter from './routes/userRoutes.js';
 import busRouter from './routes/busRoutes.js';
+import stationRouter from './routes/stationRoutes.js';
 
 dotenv.config()
 const app = express();
@@ -45,13 +45,15 @@ app.use(cors({
 
 app.use('/', adminRouter)
 
-//Driver Routes
-app.use('/driver', driverRouter)
+//Driver Routes 
+app.use('/driver', driverRouter)  
 
 //User Routes
 app.use('/user',userRouter)
 
 app.use('/bus',busRouter)
+//Station Routes
+app.use('/station',stationRouter)
 
 app.listen(PORT, () => console.log(`Express Server created successfully on port ${PORT}`))
 
