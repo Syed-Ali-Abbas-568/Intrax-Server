@@ -52,7 +52,7 @@ app.use('/driver', driverRouter)
 //User Routes
 app.use('/user', userRouter)
 
-app.use('/bus',busRouter)
+app.use('/bus', busRouter)
 //Station Routes
 app.use('/station', stationRouter)
 
@@ -61,3 +61,6 @@ app.use('/route', routeRouter)
 
 app.listen(PORT, () => console.log(`Express Server created successfully on port ${PORT}`))
 
+
+
+export default app;
