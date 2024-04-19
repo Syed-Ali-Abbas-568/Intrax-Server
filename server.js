@@ -60,5 +60,6 @@ app.use('/station', stationRouter)
 app.use('/route', routeRouter)
 
 app.listen(PORT, () => console.log(`Express Server created successfully on port ${PORT}`))
+export default app;
 
 
