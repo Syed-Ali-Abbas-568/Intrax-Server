@@ -11,7 +11,7 @@ const adminRouter = express.Router();
 // You can use req, res over here, but to create clean code, we will use a function that does that for us
 
 adminRouter.get('/', test);
-
+adminRouter.get('/test', test);
 adminRouter.post('/register', registerAdmin);
 adminRouter.post('/login', loginAdmin);
 
