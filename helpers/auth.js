@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 // This applies salting and hashing on the password before passing it to the database
 const hashPassword = password => new Promise((resolve, reject) => {

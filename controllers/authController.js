@@ -6,7 +6,8 @@ import jwt from 'jsonwebtoken';
 
 
 export const test = (req, res) => {
-    res.json('test is working');
+    res.send('Test is working');
+    // res.json('test is working');
 
 };
 
