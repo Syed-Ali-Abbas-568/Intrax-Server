@@ -29,8 +29,7 @@ mongoose.connect(process.env.MONGO_URL)
 //Middleware
 
 
-
-app.use(bodyParser.json({ extended: true }))
+app.use(bodyParser.json({ limit: '5mb' }));
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
