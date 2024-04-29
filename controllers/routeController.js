@@ -6,10 +6,11 @@ import routeModel from "../models/routeSchema.js";
 export const addRoute = async (req, res) => {
     try {
         // Extract data from the request body
-        const { name, stations } = req.body;
+        const { name, stations, directions } = req.body;
         const newRoute = new routeModel({
             name,
             stations,
+            directions
         });
 
         // Save the station to the database

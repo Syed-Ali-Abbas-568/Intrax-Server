@@ -5,7 +5,8 @@ const routeSchema = mongoose.Schema({
     stations: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'stations' // Referring to the Station model
-    }]
+    }],
+    directions: String,
 
 })
 
