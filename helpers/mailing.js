@@ -14,7 +14,7 @@ const transporter = await nodemailer.createTransport({
     },
 });
 
-export function sendPasswordKeyDriverEmail(driverName, driverEmail, driverPassword) {
+export async function sendPasswordKeyDriverEmail(driverName, driverEmail, driverPassword) {
     const mailOptions = {
         from: "syedaliabbas568@gmail.com",
         to: driverEmail,
@@ -39,7 +39,7 @@ export function sendPasswordKeyDriverEmail(driverName, driverEmail, driverPasswo
     };
 
 
-    transporter.sendMail(mailOptions, (error, info) => {
+    await transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.error("Error sending email: ", error);
         } else {

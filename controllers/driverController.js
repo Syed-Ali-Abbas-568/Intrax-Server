@@ -21,7 +21,7 @@ export const addDriver = async (request, response) => {
 
 
         await newDriver.save()
-        sendPasswordKeyDriverEmail(request.body.name, request.body.email, randompassword);
+        await sendPasswordKeyDriverEmail(request.body.name, request.body.email, randompassword);
         response.status(201).json(newDriver)
     }
     catch (error) {
