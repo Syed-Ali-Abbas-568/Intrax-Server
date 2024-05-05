@@ -13,6 +13,7 @@ import userRouter from './routes/userRoutes.js';
 import busRouter from './routes/busRoutes.js';
 import stationRouter from './routes/stationRoutes.js';
 import routeRouter from './routes/routeRouter.js';
+import assignmentRouter from './routes/assignmentRoutes.js';
 
 dotenv.config()
 const app = express();
@@ -57,6 +58,10 @@ app.use('/station', stationRouter)
 
 //Driver Routes
 app.use('/route', routeRouter)
+
+
+//Assignment Router
+app.use('/assignment', assignmentRouter)
 
 app.listen(PORT, () => console.log(`Express Server created successfully on port ${PORT}`))
 export default app;

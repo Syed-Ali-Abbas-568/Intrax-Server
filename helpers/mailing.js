@@ -3,7 +3,7 @@
 import nodemailer from 'nodemailer';
 
 
-const transporter = nodemailer.createTransport({
+const transporter = await nodemailer.createTransport({
     service: "Gmail",
     host: "smtp.gmail.com",
     port: 465,

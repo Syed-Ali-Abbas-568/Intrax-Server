@@ -7,7 +7,12 @@ const driverSchema = mongoose.Schema({
     cnic: { type: String, unique: true },
     gender: String,
     status: String,
-    password: String
+    password: String,
+
+    // shift: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'assignment' // Referring to the assignment model
+    // }
 
 
 })
