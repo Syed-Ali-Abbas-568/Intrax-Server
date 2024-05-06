@@ -82,7 +82,7 @@ export async function sendPasswordKeyDriverEmail(driverName, driverEmail, driver
         attachments: [
             {
                 filename: 'logo.png',
-                path: 'assets/logo.png',
+                path: '../assets/logo.png',
                 cid: 'busAppImage',
             },
         ],
