@@ -9,10 +9,10 @@ const driverSchema = mongoose.Schema({
     status: String,
     password: String,
 
-    // shift: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'assignment' // Referring to the assignment model
-    // }
+    shift: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'assignment' // Referring to the assignment model
+    }
 
 
 })
