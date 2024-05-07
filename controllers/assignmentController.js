@@ -65,6 +65,27 @@ export const getAllDetailedAssignments = async (req, res) => {
 
 
 
+export const getDetailedAssignmentById = async (req, res) => {
+    try {
+        // Fetch all assignments from the database
+        const assignmentID = req.params.id;
+        let assignment = await assignmentModel.findById(assignmentID);
+
+
+        // Map over the assignments and await for all promises to resolve
+
+        const bus = await BusModel.findById(assignment.assignedBus);
+        const route = await routeModel.findById(assignment.assignedRoute);
+        assignment = { ...assignment.toObject(), assignedBus: bus, assignedRoute: route };
+        res.status(200).json(assignment);
+    } catch (error) {
+        console.error('Error fetching assignment by ID:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+
+
 
 
 
