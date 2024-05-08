@@ -46,3 +46,35 @@ export const updateBus = async (request, response) => {
         response.status(500).json({ error: 'Internal Server Error' });
     }
 };
+
+
+
+
+export const updateLocation = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const { latitude, longitude } = req.body;
+
+        // Find the bus by ID
+        const bus = await BusModel.findById(id);
+
+        // If bus not found, return 404 Not Found
+        if (!bus) {
+            return res.status(404).json({ error: 'Bus not found' });
+        }
+
+        // Update latitude and longitude fields
+        bus.latitude = latitude;
+        bus.longitude = longitude;
+
+        // Save the updated bus
+        await bus.save();
+
+        // Respond with success message
+        return res.json({ message: 'Bus location updated successfully' });
+    } catch (error) {
+        // Handle errors
+        console.error('Error updating bus location:', error);
+        return res.status(500).json({ error: 'Internal server error' });
+    }
+}
