@@ -84,7 +84,32 @@ export const getDetailedAssignmentById = async (req, res) => {
     }
 };
 
+export const updateAssignment = async (req, res) => {
+    try {
+        const assignmentID = req.params.id;
+        const { shiftname, assignedRoute, assignedBus } = req.body;
+        const updatedAssignment = await assignmentModel.findByIdAndUpdate(
+            assignmentID,
+            { shiftname, assignedRoute, assignedBus },
+            { new: true }
+        );
+        res.status(200).json(updatedAssignment);
+    } catch (error) {
+        console.error('Error updating assignment:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
 
+export const deleteAssignment = async (req, res) => {
+    try {
+        const assignmentID = req.params.id;
+        await assignmentModel.findByIdAndDelete(assignmentID);
+        res.status(200).json({ message: 'Assignment deleted successfully' });
+    } catch (error) {
+        console.error('Error deleting assignment:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
 
 
 

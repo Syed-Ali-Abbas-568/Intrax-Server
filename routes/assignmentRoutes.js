@@ -1,5 +1,5 @@
 import express from "express";
-import { getAllAssignments, addAssignment, getAllDetailedAssignments, getDetailedAssignmentById } from "../controllers/assignmentController.js";
+import { getAllAssignments, addAssignment, getAllDetailedAssignments, getDetailedAssignmentById, updateAssignment, deleteAssignment } from "../controllers/assignmentController.js";
 
 const assignmentRouter = express.Router()
 
@@ -10,5 +10,9 @@ assignmentRouter.get('/viewdata', getAllDetailedAssignments)
 
 assignmentRouter.get('/:id', getDetailedAssignmentById)
 
+assignmentRouter.put('/:id', updateAssignment);
 
-export default assignmentRouter
+assignmentRouter.delete('/:id', deleteAssignment);
+
+
+export default assignmentRouter;
