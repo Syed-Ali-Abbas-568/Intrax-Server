@@ -51,6 +51,7 @@ export const getAllDetailedAssignments = async (req, res) => {
 
         // Map over the assignments and await for all promises to resolve
         assignments = await Promise.all(assignments.map(async (assignment) => {
+
             const bus = await BusModel.findById(assignment.assignedBus);
             const route = await routeModel.findById(assignment.assignedRoute);
             return { ...assignment.toObject(), assignedBus: bus, assignedRoute: route };
