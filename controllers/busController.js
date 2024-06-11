@@ -54,6 +54,8 @@ export const updateLocation = async (req, res) => {
     try {
         const { id } = req.params;
         const { latitude, longitude } = req.body;
+        const { nextStation } = req.body;
+        const { timeOfArrival } = req.body;
 
         // Find the bus by ID
         const bus = await BusModel.findById(id);
@@ -66,6 +68,8 @@ export const updateLocation = async (req, res) => {
         // Update latitude and longitude fields
         bus.latitude = latitude;
         bus.longitude = longitude;
+        bus.nextStation = nextStation;
+        bus.timeOfArrival = timeOfArrival;
 
         // Save the updated bus
         await bus.save();

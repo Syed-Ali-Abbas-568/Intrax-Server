@@ -14,6 +14,9 @@ export const loginUser = async (req, res) => {
 
         }
 
+
+
+
         //check if password matches:
         const match = await comparePassword(password, user.password)
         //if the user exist we will now assign them a jwt token which is cookie basically and we can now track the user along his pages
@@ -23,7 +26,12 @@ export const loginUser = async (req, res) => {
             res.json({ token, user: { _id, name, email } })*/
 
             return res.json(
-                { message: "User Found" }
+                {
+                    message: "User Found",
+                    user: user
+
+
+                }
 
             )
         }
@@ -60,7 +68,7 @@ export const addUser = async (request, response) => {
             email,
             phone,
             gender,
-            password:hashedPassword,
+            password: hashedPassword,
         });
 
         // Save the new user to the database
@@ -76,7 +84,7 @@ export const addUser = async (request, response) => {
 
 
 export const getUserByPhoneNumber = async (request, response) => {
-   
+
     const { phone } = request.query; // Assuming the phone number is in the request parameters
     console.log(phone)
 
@@ -90,9 +98,9 @@ export const getUserByPhoneNumber = async (request, response) => {
         }
 
         // Respond with a status code of 200 and a JSON representation of the user 
-        response.status(201).json({message: 'User found'});
+        response.status(201).json({ message: 'User found' });
     } catch (error) {
         // If there's an error, respond with a status code of 404 and an error message
-        response.status(404).json({ message: error.message });   
+        response.status(404).json({ message: error.message });
     }
 };
