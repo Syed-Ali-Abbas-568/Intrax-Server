@@ -14,5 +14,4 @@ driverRouter.delete('/delete/:id', deleteDriver)
 driverRouter.put('/update/:id', updateDriver)
 driverRouter.get('/login', loginCaptain)
 
-
 export default driverRouter
