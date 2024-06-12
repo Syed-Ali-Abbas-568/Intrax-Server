@@ -49,7 +49,18 @@ const busSchema = mongoose.Schema({
     default: 0
 
   },
+  nextStation: {
 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'stations', // Referring to the Station model
+    default: null
+
+  },
+  timeOfArrival: {
+    type: String,
+    default: null
+
+  }
 
 
 });
